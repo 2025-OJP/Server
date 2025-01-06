@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: osp-server-image
+    image: ojp-server-image
     container_name: ojp-server-container
     ports:
       - 8080:8080
