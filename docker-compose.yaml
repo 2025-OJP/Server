@@ -1,0 +1,27 @@
+services:
+  Login:
+    build:
+      context: ./Login
+      dockerfile: Dockerfile
+    image: ojp-server-login-image
+    container_name: ojp-server-login-container
+    env_file:
+      - ./.env
+    ports:
+      - "${LOGIN_PORT}:${LOGIN_PORT}"
+    volumes:
+      - ./Login/:/app
+    command: sh -c "cd /app && npm install && node app.js"
+  Problem:
+    build:
+      context: ./Problem
+      dockerfile: Dockerfile
+    image: ojp-server-problem-image
+    container_name: ojp-server-problem-container
+    env_file:
+      - ./.env
+    ports:
+      - "${PROBLEM_PORT}:${PROBLEM_PORT}"
+    volumes:
+      - ./Problem/:/app
+    command: sh -c "cd /app && npm install && node app.js"
