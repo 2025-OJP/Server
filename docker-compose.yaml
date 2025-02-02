@@ -1,0 +1,30 @@
+services:
+  User:
+    build:
+      context: ./User
+      dockerfile: Dockerfile
+    image: ojp-server-user-image
+    container_name: ojp-server-user-container
+    env_file:
+      - ./.env
+    ports:
+      - "${USER_PORT}:${USER_PORT}"
+    volumes:
+      - ./User/:/app 
+      - ./models:/models 
+    command: sh -c "cp -r /models /app/src && cd /app && npm install && node server.js"
+
+  Problem:
+    build:
+      context: ./Problem
+      dockerfile: Dockerfile
+    image: ojp-server-problem-image
+    container_name: ojp-server-problem-container
+    env_file:
+      - ./.env
+    ports:
+      - "${PROBLEM_PORT}:${PROBLEM_PORT}"
+    volumes:
+      - ./Problem/:/app 
+      - ./models:/models  
+    command: sh -c "cp -r /models /app/src && cd /app && npm install && node server.js"
