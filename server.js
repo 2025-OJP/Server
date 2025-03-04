@@ -5,10 +5,10 @@ const cors = require('cors');
 // Load environment variables
 require('dotenv').config();
 
-const port=process.env.LOGIN_PORT;
+const port=process.env.BACKEND_PORT;
 
 app.get('/',(req,res)=>{
-    res.send('Hello Login!')
+    res.send('Hello Back!')
 })
 
 
